@@ -13,7 +13,7 @@ class AdminVehiculos extends Component
     
     public function render()
     {
-        $vehiculos = Vehiculo::paginate(6);
+        $vehiculos = Vehiculo::paginate(20);
         return view('livewire.admin-vehiculos',compact('vehiculos'));
     }
 }

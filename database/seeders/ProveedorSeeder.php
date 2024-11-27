@@ -13,6 +13,6 @@ class ProveedorSeeder extends Seeder
      */
     public function run(): void
     {
-        Proveedor::factory(5)->create();
+        Proveedor::factory(4)->create();
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Almacen;
 use App\Models\Bitacora;
 use App\Models\NotaCompra;
+use App\Models\Parabrisa;
 use App\Models\Proveedor;
 
 use Livewire\Component;
@@ -22,14 +23,17 @@ class AdminNotaCompra extends Component
     public $filtroAlmacen;
     public $filtroDesdeFecha;
     public $filtroHastaFecha;
+    public $filtroParabrisa;
 
     public $proveedores;
     public $almacenes;
+    public $parabrisas;
 
     public function mount()
     {
         $this->proveedores = Proveedor::all();
         $this->almacenes = Almacen::all();
+        $this->parabrisas=Parabrisa::all();
     }
 
     public function deleteCompra($nota_compra_id)
@@ -102,7 +106,7 @@ class AdminNotaCompra extends Component
 
     public function resetFiltros()
     {
-        $this->reset(['filtroProveedor', 'filtroAlmacen', 'filtroDesdeFecha', 'filtroHastaFecha']);
+        $this->reset(['filtroProveedor', 'filtroAlmacen', 'filtroDesdeFecha', 'filtroHastaFecha', 'filtroParabrisa']);
     }
     public function updatedFiltroProveedor()
     {
@@ -110,6 +114,11 @@ class AdminNotaCompra extends Component
     }
 
     public function updatedFiltroAlmacen()
+    {
+        $this->limpiar_page();
+    }
+
+    public function updatedFiltroParabrisa()
     {
         $this->limpiar_page();
     }
@@ -149,7 +158,13 @@ class AdminNotaCompra extends Component
             $nota_compras->whereDate('fecha', '<=', $this->filtroHastaFecha);
         }
 
-        $nota_compras = $nota_compras->paginate(6);
+        if($this->filtroParabrisa){
+            $nota_compras->where('parabrisa_id', $this->filtroParabrisa);
+            
+        }
+         
+
+        $nota_compras = $nota_compras->paginate(20);
 
         return view('livewire.admin-nota-compra', compact('nota_compras'));
     }

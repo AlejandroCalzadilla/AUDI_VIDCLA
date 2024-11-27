@@ -19,6 +19,7 @@ use App\Http\Controllers\TelefonoController;
 use App\Http\Controllers\NotaVentaController;
 use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\BitacoraController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,9 +41,9 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->middleware('can:Ver dashboard')->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])
+        ->middleware('can:Ver dashboard')
+        ->name('dashboard');
 });
 
 //Para los roles

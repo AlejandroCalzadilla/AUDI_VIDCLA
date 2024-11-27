@@ -40,7 +40,8 @@
                                 <td>
                                     {{ $parabrisa->id }}
                                 </td>                            
-                                <td>
+                                <td> 
+                                    {{$parabrisa->posicion->nombre}} //   
                                     {{ $parabrisa->vehiculo->descripcion }} //
                                     Año: {{ $parabrisa->vehiculo->año}} //
                                     Marca: {{ $parabrisa->vehiculo->marca->nombre}}

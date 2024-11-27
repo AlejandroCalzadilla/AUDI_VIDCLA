@@ -15,7 +15,7 @@
     <div class="card-body">
         <form wire:submit.prevent="aplicarFiltros">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <div class="form-group">
                         <label>Proveedor</label>
                         <select wire:model="filtroProveedor" class="form-control">
@@ -27,7 +27,27 @@
                     </div>
                 </div>
 
-                <div class="col-md-3">
+                
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>Parabrisa</label>
+                            <select wire:model="filtroParabrisa" class="form-control">
+                                <option value="">Todos</option>
+                                @foreach ($parabrisas as $parabrisa)
+                                    <option value="{{ $parabrisa->id }}">{{$parabrisa->posicion->nombre}} : {{ $parabrisa->descripcion }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div> 
+               
+
+
+
+
+
+
+
+                <div class="col-md-2">
                     <div class="form-group">
                         <label>Almacén</label>
                         <select wire:model="filtroAlmacen" class="form-control">
@@ -39,7 +59,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <div class="form-group">
                         <label>Desde fecha</label>
                         <input wire:model="filtroDesdeFecha" type="date" class="form-control">
@@ -107,11 +127,9 @@
                                     {{ $nota_compra->parabrisa->id }}
                                 </td>
                                 <td>
-                                    ID:{{ $nota_compra->parabrisa->id }}
-                                    Ab:{{ $nota_compra->parabrisa->abajo }}
-                                    Ar:{{ $nota_compra->parabrisa->arriba }}
-                                    Co:{{ $nota_compra->parabrisa->costado }}
-                                    Me:{{ $nota_compra->parabrisa->medio }}
+                                    {{$nota_compra->parabrisa->posicion->nombre}} : 
+                                    {{$nota_compra->parabrisa->descripcion}}
+                                   
                                    
                                 </td>
                                 <td>

@@ -15,7 +15,7 @@ class ClienteSeeder extends Seeder
     public function run(): void
     {
          // Este seeder creará 10 clientes, cada uno con 1 a 3 teléfonos.
-         Cliente::factory(10)->create()->each(function ($cliente) {
+         Cliente::factory(100)->create()->each(function ($cliente) {
             $cliente->telefonos()->saveMany(Telefono::factory(rand(1, 3))->make());
         });
     }

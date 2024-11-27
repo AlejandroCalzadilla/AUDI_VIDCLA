@@ -128,7 +128,7 @@ class NotaVentaComponent extends Component
             $query = $query->whereDate('fecha', '<=', $this->hasta);
         }
 
-        $nota_ventas = $query->orderBy('id', 'DESC')->paginate(6);
+        $nota_ventas = $query->orderBy('id', 'DESC')->paginate(20);
 
         return view('livewire.nota-venta-component', compact('nota_ventas'));
     }

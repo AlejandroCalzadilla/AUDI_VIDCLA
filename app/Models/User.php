@@ -74,4 +74,9 @@ class User extends Authenticatable
     public function bitacoras(){
         return $this->hasMany(Bitacora::class);
     }
+
+
+   
+
+
 }

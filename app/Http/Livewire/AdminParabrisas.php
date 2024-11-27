@@ -12,7 +12,7 @@ class AdminParabrisas extends Component
     
     public function render()
     { 
-        $parabrisas = Parabrisa::paginate(6);
+        $parabrisas = Parabrisa::paginate(20);
         return view('livewire.admin-parabrisas',compact('parabrisas'));
     }
 }

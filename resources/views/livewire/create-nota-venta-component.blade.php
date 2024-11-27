@@ -48,7 +48,7 @@
                                 wire:model="lineasVenta.{{ $index }}.parabrisa_id">
                                 <option value="">Seleccione un parabrisa...</option>
                                 @foreach ($parabrisas as $parabrisa)
-                                    <option value="{{ $parabrisa->id }}">ID -> {{ $parabrisa->id }}</option>
+                                    <option value="{{ $parabrisa->id }}"> {{ $parabrisa->posicion->nombre }}:  {{$parabrisa->descripcion}} </option>
                                 @endforeach
                             </select>
                             @error('lineasVenta.' . $index . '.parabrisa_id')

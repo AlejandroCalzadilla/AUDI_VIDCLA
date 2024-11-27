@@ -13,6 +13,6 @@ class MarcaSeeder extends Seeder
      */
     public function run(): void
     {
-        Marca::factory(5)->create();
+        //Marca::factory(5)->create();
     }
 }
