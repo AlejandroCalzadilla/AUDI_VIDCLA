@@ -106,4 +106,7 @@ class NotaVentaSeeder extends Seeder
         }
         echo "Se han generado $ventaCounter ventas y se ha consumido todo el stock de parabrisas.";
     }
+
+
+
 }

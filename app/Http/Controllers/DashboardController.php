@@ -74,6 +74,13 @@ class DashboardController extends Controller
     }
 
 
+    public function categoria(){
+
+        $categoria = DB::table('categorias')->get();
+        return response()->json($categoria);
+
+    }
+
 
 
     

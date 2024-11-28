@@ -76,28 +76,40 @@ $this->callWith(NotaVentaSeeder::class, [
  
      
      */ 
-
-           $startYear = 2021;
-$endYear = 2024;
-
-for ($year = $startYear; $year <= $endYear; $year++) {
-    for ($month = 1; $month <= 12; $month += 3) {
-        $compraDate = Carbon::create($year, $month, 1)->toDateString();
-        $startDate = Carbon::create($year, $month, 1);
-        $endDate = $startDate->copy()->endOfQuarter();
-
-        // Pasar fechas como parámetros al seeder de NotaCompra
-        $this->callWith(NotaCompraSeeder::class, [
-            'fechacompra' => $compraDate,
-        ]);
-
-        // Pasar fechas como parámetros al seeder de NotaVenta
-        $this->callWith(NotaVentaSeeder::class, [
-            'startDate' => $startDate,
-            'endDate' => $endDate,
-        ]);
+    $startYear = 2021;
+    $endYear = 2024;
+    
+    for ($year = $startYear; $year <= $endYear; $year++) {
+        for ($month = 1; $month <= 12; $month++) {
+            // Omitir la venta en diciembre de 2024
+            if ($year == 2024 && $month == 12) {
+                continue;
+            }
+    
+            $compraDate = Carbon::create($year, $month, 1)->toDateString();
+            $startDate = Carbon::create($year, $month, 1);
+            $endDate = $startDate->copy()->endOfQuarter();
+    
+            // Pasar fechas como parámetros al seeder de NotaCompra
+            $this->callWith(NotaCompraSeeder::class, [
+                'fechacompra' => $compraDate,
+            ]);
+    
+            // Pasar fechas como parámetros al seeder de NotaVenta
+            $this->callWith(NotaVentaSeeder::class, [
+                'startDate' => $startDate,
+                'endDate' => $endDate,
+            ]);
+        }
     }
-}
+
+
+
+   
+
+
+
+
       
         
 
